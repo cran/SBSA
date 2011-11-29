@@ -5,7 +5,7 @@ using namespace arma;
 
 BSABinaryMCMCResult
 BSABinaryModel::operator()(const int n_rep,
-                           const vec& sampler_jump) const {
+                           const std::vector<vec>& sampler_jump) const {
   ThetaBinary theta_cur(ones<vec>(2) * .1, // alpha
                         ones<vec>(p) * .1, // beta.z
                         ones<vec>(p) * .1, // gamma.z
@@ -14,11 +14,11 @@ BSABinaryModel::operator()(const int n_rep,
   double log_lik_cur = loglik(theta_cur);
   double log_pri_cur = logpri(theta_cur);
 
-  const McmcReparametrizingBinarySampler& alpha = ReparametrizeBinaryAlpha(loglik, logpri, sampler_jump(0));
-  const McmcReparametrizingBinarySampler& beta_z = ReparametrizeBinaryBetaZ(loglik, logpri, p, sampler_jump(1));
-  const McmcReparametrizingBinarySampler& tau_sq = ReparametrizeBinaryTauSq(loglik, logpri, p, sampler_jump(2));
-  const McmcReparametrizingBinarySampler& beta_u_gamma_x = ReparametrizeBinaryBetaUGammaX(loglik, logpri, sampler_jump(3), el2);
-  const McmcReparametrizingBinarySampler& gamma_z = ReparametrizeBinaryGammaZ(loglik, logpri, p, sampler_jump(4));
+  const McmcReparametrizingBinarySampler& alpha = ReparametrizeBinaryAlpha(loglik, logpri, sampler_jump.at(0));
+  const McmcReparametrizingBinarySampler& beta_z = ReparametrizeBinaryBetaZ(loglik, logpri, p, sampler_jump.at(1));
+  const McmcReparametrizingBinarySampler& tau_sq = ReparametrizeBinaryTauSq(loglik, logpri, p, sampler_jump.at(2));
+  const McmcReparametrizingBinarySampler& beta_u_gamma_x = ReparametrizeBinaryBetaUGammaX(loglik, logpri, as_scalar(sampler_jump.at(3)), el2);
+  const McmcReparametrizingBinarySampler& gamma_z = ReparametrizeBinaryGammaZ(loglik, logpri, p, sampler_jump.at(4));
   const McmcReparametrizingBinarySampler* samplers[] = {
     &alpha, &beta_z, &tau_sq, &beta_u_gamma_x, &gamma_z
   };

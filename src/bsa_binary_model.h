@@ -29,7 +29,7 @@ public:
              rho_alpha, sd_alpha_0, sd_alpha_x)
   {}
   
-  BSABinaryMCMCResult operator()(const int n_rep, const arma::vec& sampler_jump) const;
+  BSABinaryMCMCResult operator()(const int n_rep, const std::vector<arma::vec>& sampler_jump) const;
   
 private:
   const double el2;

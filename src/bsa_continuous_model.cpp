@@ -5,7 +5,7 @@ using namespace arma;
 
 BSAMCMCResult
 BSAContinuousModel::operator()(const int n_rep,
-                               const vec& sampler_jump) const {
+                               const std::vector<vec>& sampler_jump) const {
   Theta theta_cur(ones<vec>(2) * .1,  // alpha
                   ones<vec>(p) * .1,  // beta.z
                   ones<vec>(p) * .1,  // gamma.z
@@ -14,12 +14,12 @@ BSAContinuousModel::operator()(const int n_rep,
   double log_lik_cur = loglik(theta_cur);
   double log_pri_cur = logpri(theta_cur);
 
-  const McmcReparametrizingSampler& alpha = ReparametrizeAlpha(loglik, logpri, sampler_jump(0));
-  const McmcReparametrizingSampler& beta_z = ReparametrizeBetaZ(loglik, logpri, p, sampler_jump(1));
-  const McmcReparametrizingSampler& sigma_sq = ReparametrizeSigmaSq(loglik, logpri, sampler_jump(2));
-  const McmcReparametrizingSampler& tau_sq = ReparametrizeTauSq(loglik, logpri, p, sampler_jump(3));
-  const McmcReparametrizingSampler& beta_u_gamma_x = ReparametrizeBetaUGammaX(loglik, logpri, sampler_jump(4), el2);
-  const McmcReparametrizingSampler& gamma_z = ReparametrizeGammaZ(loglik, logpri, p, sampler_jump(5));
+  const McmcReparametrizingSampler& alpha = ReparametrizeAlpha(loglik, logpri, sampler_jump.at(0));
+  const McmcReparametrizingSampler& beta_z = ReparametrizeBetaZ(loglik, logpri, p, sampler_jump.at(1));
+  const McmcReparametrizingSampler& sigma_sq = ReparametrizeSigmaSq(loglik, logpri, as_scalar(sampler_jump.at(2)));
+  const McmcReparametrizingSampler& tau_sq = ReparametrizeTauSq(loglik, logpri, p, sampler_jump.at(3));
+  const McmcReparametrizingSampler& beta_u_gamma_x = ReparametrizeBetaUGammaX(loglik, logpri, as_scalar(sampler_jump.at(4)), el2);
+  const McmcReparametrizingSampler& gamma_z = ReparametrizeGammaZ(loglik, logpri, p, sampler_jump.at(5));
   const McmcReparametrizingSampler* samplers[] = {
     &alpha, &beta_z, &sigma_sq, &tau_sq, &beta_u_gamma_x, &gamma_z
   };

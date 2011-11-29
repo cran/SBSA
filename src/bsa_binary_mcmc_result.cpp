@@ -26,6 +26,10 @@ void BSABinaryMCMCResult::add(ThetaBinary theta_cur) {
 
 // TODO: avoid transposing
 List BSABinaryMCMCResult::result() const {
+  NumericVector acc(this->acc.begin(), this->acc.end());
+  const std::string acc_names[] = {"alpha", "beta.z", "tau.sq",
+                            "beta.u.gamma.x", "gamma.z"};
+  acc.names() = std::vector<std::string>(acc_names, acc_names+5);
   return List::create(_["alpha"] = trans(alphas),
                       _["beta.z"] = trans(beta_zs),
                       _["gamma.z"] = trans(gamma_zs),

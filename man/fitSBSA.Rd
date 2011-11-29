@@ -23,7 +23,8 @@ block-sampling. The estimated parameters are as follows:
 }}
 \value{a list with the following elements:
 \item{acc}{a vector of counts of how many times each block
-sampler successfully made a jump}
+sampler successfully made a jump. Vector elements are named by their block,
+as in the \code{sampler.jump} argument.}
 \item{alpha}{a \eqn{nrep \times\ 2} matrix of the value of \eqn{\alpha} parameter at each MCMC step}
 \item{beta.z}{a \eqn{nrep \times\ p} matrix of the value of \eqn{\beta_z} parameter at each MCMC step}
 \item{gamma.z}{a \eqn{nrep \times\ p} matrix of the value of \eqn{\gamma_z} parameter at each MCMC step}

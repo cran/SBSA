@@ -49,8 +49,17 @@ RcppExport SEXP fitbsa(SEXP y_in,
 
   const int n_rep = as<int>(nrep_in);
 
-  NumericVector sampler_jump_r(sampler_jump_in);
-  arma::vec sampler_jump(sampler_jump_r.begin(), sampler_jump_r.size(), false);
+  List sampler_jump_r(sampler_jump_in);
+  std::vector<arma::vec> sampler_jump;
+  sampler_jump.reserve(6);
+
+  for (List::iterator it = sampler_jump_r.begin();
+       it != sampler_jump_r.end(); ++it) {
+    NumericVector block_jump_r = *it;
+    arma::vec block_jump(block_jump_r.begin(), block_jump_r.size(), false);
+    sampler_jump.push_back(block_jump);
+    //std::cout << block_jump << std::endl;
+  }
 
   NumericMatrix v2_r(v2_in);
   arma::mat v2(v2_r.begin(), v2_r.nrow(), v2_r.ncol(), false);

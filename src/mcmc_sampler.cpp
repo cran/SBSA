@@ -31,8 +31,8 @@ McmcReparametrizingSampler::sample(Theta& theta_cur,
 
 Theta ReparametrizeAlpha::reparametrize(const Theta& theta_cur) const {
   Theta theta(theta_cur);
-  theta.alpha(0) += ::Rf_rnorm(0, sigma);
-  theta.alpha(1) += ::Rf_rnorm(0, sigma);
+  theta.alpha(0) += ::Rf_rnorm(0, sigma(0));
+  theta.alpha(1) += ::Rf_rnorm(0, sigma(1));
 
   return theta;
 }
@@ -41,7 +41,7 @@ Theta ReparametrizeAlpha::reparametrize(const Theta& theta_cur) const {
 Theta ReparametrizeBetaZ::reparametrize(const Theta& theta_cur) const {
   Theta theta(theta_cur);
   for (int i = 0; i < p; ++i) {
-    theta.beta_z(i) += ::Rf_rnorm(0, sigma);
+    theta.beta_z(i) += ::Rf_rnorm(0, sigma(i));
   }
 
   return theta;
@@ -59,7 +59,7 @@ Theta ReparametrizeSigmaSq::reparametrize(const Theta& theta_cur) const {
 Theta ReparametrizeTauSq::reparametrize(const Theta& theta_cur) const {
   Theta theta(theta_cur);
   for (int i = 0; i < p; ++i) {
-    theta.tau_sq(i) += ::Rf_rnorm(0, sigma);
+    theta.tau_sq(i) += ::Rf_rnorm(0, sigma(i));
   }
 
   return theta;
@@ -87,7 +87,7 @@ Theta ReparametrizeBetaUGammaX::reparametrize(const Theta& theta_cur) const {
 Theta ReparametrizeGammaZ::reparametrize(const Theta& theta_cur) const {
   vec gamma_z_noise = zeros<vec>(p);
   for (int i = 0; i < p; ++i) {
-    gamma_z_noise(i) = ::Rf_rnorm(0, sigma);
+    gamma_z_noise(i) = ::Rf_rnorm(0, sigma(i));
   }
 
   Theta theta(theta_cur);

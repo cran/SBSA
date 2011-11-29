@@ -23,13 +23,13 @@ class ReparametrizeAlpha : public McmcReparametrizingSampler {
 public:
   ReparametrizeAlpha(const LogLik& loglik_, 
                      const LogPri& logpri_,
-                     const double sigma_)
+                     const arma::vec& sigma_)
     : McmcReparametrizingSampler::McmcReparametrizingSampler(loglik_, logpri_),
       sigma(sigma_) {}
 protected:
   virtual Theta reparametrize(const Theta& theta_cur) const;
 private:
-  const double sigma;
+  const arma::vec sigma;
 };
 
 class ReparametrizeBetaZ : public McmcReparametrizingSampler {
@@ -37,7 +37,7 @@ public:
   ReparametrizeBetaZ(const LogLik& loglik_, 
                      const LogPri& logpri_,
                      const int p_,
-                     const double sigma_)
+                     const arma::vec& sigma_)
     : McmcReparametrizingSampler::McmcReparametrizingSampler(loglik_, logpri_),
       p(p_),
       sigma(sigma_) {}
@@ -45,7 +45,7 @@ protected:
   virtual Theta reparametrize(const Theta& theta_cur) const;
 private:
   const int p;
-  const double sigma;
+  const arma::vec sigma;
 };
 
 class ReparametrizeSigmaSq : public McmcReparametrizingSampler {
@@ -66,7 +66,7 @@ public:
   ReparametrizeTauSq(const LogLik& loglik_, 
                      const LogPri& logpri_,
                      const int p,
-                     const double sigma_)
+                     const arma::vec& sigma_)
     : McmcReparametrizingSampler::McmcReparametrizingSampler(loglik_, logpri_),
       p(p),
       sigma(sigma_) {}
@@ -74,7 +74,7 @@ protected:
   virtual Theta reparametrize(const Theta& theta_cur) const;
 private:
   const int p;
-  const double sigma;
+  const arma::vec sigma;
 };
 
 class ReparametrizeBetaUGammaX : public McmcReparametrizingSampler {
@@ -97,7 +97,7 @@ public:
   ReparametrizeGammaZ(const LogLik& loglik_, 
                       const LogPri& logpri_,
                       const int p_,
-                      const double sigma_)
+                      const arma::vec& sigma_)
     : McmcReparametrizingSampler::McmcReparametrizingSampler(loglik_, logpri_),
       p(p_),
       sigma(sigma_) {}
@@ -105,7 +105,7 @@ protected:
   virtual Theta reparametrize(const Theta& theta_cur) const;
 private:
   const int p;
-  const double sigma;
+  const arma::vec sigma;
 };
 
 #endif

@@ -30,8 +30,8 @@ McmcReparametrizingBinarySampler::sample(ThetaBinary& theta_cur,
 
 ThetaBinary ReparametrizeBinaryAlpha::reparametrize(const ThetaBinary& theta_cur) const {
   ThetaBinary theta(theta_cur);
-  theta.alpha(0) += ::Rf_rnorm(0, sample_jump);
-  theta.alpha(1) += ::Rf_rnorm(0, sample_jump);
+  theta.alpha(0) += ::Rf_rnorm(0, sampler_jump(0));
+  theta.alpha(1) += ::Rf_rnorm(0, sampler_jump(1));
 
   return theta;
 }
@@ -40,7 +40,7 @@ ThetaBinary ReparametrizeBinaryAlpha::reparametrize(const ThetaBinary& theta_cur
 ThetaBinary ReparametrizeBinaryBetaZ::reparametrize(const ThetaBinary& theta_cur) const {
   ThetaBinary theta(theta_cur);
   for (int i = 0; i < p; ++i) {
-    theta.beta_z(i) += ::Rf_rnorm(0, sample_jump);
+    theta.beta_z(i) += ::Rf_rnorm(0, sampler_jump(i));
   }
 
   return theta;
@@ -50,7 +50,7 @@ ThetaBinary ReparametrizeBinaryBetaZ::reparametrize(const ThetaBinary& theta_cur
 ThetaBinary ReparametrizeBinaryTauSq::reparametrize(const ThetaBinary& theta_cur) const {
   ThetaBinary theta(theta_cur);
   for (int i = 0; i < p; ++i) {
-    theta.tau_sq(i) += ::Rf_rnorm(0, sample_jump);
+    theta.tau_sq(i) += ::Rf_rnorm(0, sampler_jump(i));
   }
 
   return theta;
@@ -58,8 +58,8 @@ ThetaBinary ReparametrizeBinaryTauSq::reparametrize(const ThetaBinary& theta_cur
 
 
 ThetaBinary ReparametrizeBinaryBetaUGammaX::reparametrize(const ThetaBinary& theta_cur) const {
-  const double beta_u_noise = ::Rf_rnorm(0, sample_jump);
-  const double gamma_u_noise = ::Rf_rnorm(0, sample_jump);
+  const double beta_u_noise = ::Rf_rnorm(0, sampler_jump);
+  const double gamma_u_noise = ::Rf_rnorm(0, sampler_jump);
 
   ThetaBinary theta(theta_cur);
   theta.alpha(1) -= theta.beta_u * gamma_u_noise +
@@ -76,7 +76,7 @@ ThetaBinary ReparametrizeBinaryBetaUGammaX::reparametrize(const ThetaBinary& the
 ThetaBinary ReparametrizeBinaryGammaZ::reparametrize(const ThetaBinary& theta_cur) const {
   vec gamma_z_noise = zeros<vec>(p);
   for (int i = 0; i < p; ++i) {
-    gamma_z_noise(i) = ::Rf_rnorm(0, sample_jump);
+    gamma_z_noise(i) = ::Rf_rnorm(0, sampler_jump(i));
   }
 
   ThetaBinary theta(theta_cur);

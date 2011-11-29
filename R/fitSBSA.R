@@ -48,7 +48,8 @@
 #'   the default, or \code{"binary"}.
 #' @return a list with the following elements:
 #'   \item{acc}{a vector of counts of how many times each block
-#'      sampler successfully made a jump}
+#'      sampler successfully made a jump. Vector elements are named by their block,
+#'      as in the @code{sampler.jump} argument. }
 #'   \item{alpha}{a \eqn{nrep \times\ 2} matrix of the value of \eqn{\alpha} parameter at each MCMC step}
 #'   \item{beta.z}{a \eqn{nrep \times\ p} matrix of the value of \eqn{\beta_z} parameter at each MCMC step}
 #'   \item{gamma.z}{a \eqn{nrep \times\ p} matrix of the value of \eqn{\gamma_z} parameter at each MCMC step}
@@ -166,18 +167,24 @@ fitSBSA <- function(y, x, w, a, b,
     el2 <- mean(b/(a+b)) - (p+1)*k2
   }
 
+  sampler.jump <- as.list(sampler.jump[required.samplers])
+  for (block in c('beta.z', 'tau.sq', 'gamma.z')) {
+    sampler.jump[[block]] <- rep(sampler.jump[[block]], length.out=p)
+  }
+  sampler.jump[['alpha']] <- rep(sampler.jump[['alpha']], 2)
+  
   ## TODO: name sampler jump elements
   switch(family,
          continuous=.Call('fitbsa', y, x, w,
                           a, b, k2, el2, nrep,
-                          sampler.jump[required.samplers],
+                          sampler.jump,
                           Sigma, M, mu, cor.alpha,
                           sd.alpha.0, sd.alpha.x,
                           PACKAGE = 'SBSA'),
          
          binary=.Call('fitbsa_binary', y, x, w,
                       a, b, k2, el2, nrep,
-                      sampler.jump[required.samplers],
+                      sampler.jump,
                       Sigma, M, mu,
                       q.steps, qnorm((1:q.steps)/(q.steps+1)),
                       cor.alpha,
