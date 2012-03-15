@@ -334,7 +334,7 @@ And so on until we reach a satisfactory acceptance rate:
 sbsa.fit <- fitSBSA(y, x.sdz, w.sdz, a, b, nrep=20000, 
                     sampler.jump=c(alpha=.15, beta.z=.2,
                       sigma.sq=.35, tau.sq=.1,
-                      beta.u.gamma.x=.8, gamma.z=1))
+                      beta.u.gamma.x=.7, gamma.z=1.1))
 sbsa.fit$acc
 @ 
 
@@ -444,17 +444,17 @@ trying half the size for the second (0.05):\footnote{Note that this
 sbsa.fit <- fitSBSA(y, x.sdz, w.sdz, a, b, nrep=20000, 
                     sampler.jump=list(alpha=.15, beta.z=.2,
                       sigma.sq=.35, tau.sq=c(.1, .05),
-                      beta.u.gamma.x=.8, gamma.z=1))
+                      beta.u.gamma.x=.7, gamma.z=1.1))
 sbsa.fit$acc
 @ 
 
-We still need to increase slightly the magnitude of jump for the
-$(\gamma_x^\star \beta_u^\star)$ block:
+We still need to decrease slightly the magnitude of jump for some of
+the blocks:
 <<>>=
 sbsa.fit <- fitSBSA(y, x.sdz, w.sdz, a, b, nrep=20000, 
-                    sampler.jump=list(alpha=.15, beta.z=.2,
-                      sigma.sq=.35, tau.sq=c(.1, .05),
-                      beta.u.gamma.x=.9, gamma.z=1))
+                    sampler.jump=list(alpha=.14, beta.z=.15,
+                      sigma.sq=.25, tau.sq=c(.1, .05),
+                      beta.u.gamma.x=.6, gamma.z=1.1))
 sbsa.fit$acc
 @ 
 

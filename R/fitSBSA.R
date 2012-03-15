@@ -164,7 +164,13 @@ fitSBSA <- function(y, x, w, a, b,
   
   if ( is.null(k2) && is.null(el2) ) {
     k2 <- mean((a+b)/b) * (sum(Sigma^2)-sum(diag(Sigma^2))) / ((p+1)^2-(p+1))
-    el2 <- mean(b/(a+b)) - (p+1)*k2
+    el2 <- max(mean(b/(a+b)) - (p+1)*k2, 1)
+  }
+  if (el2 <= 0) {
+    stop(paste("'el2' argument must be positive:", el2))
+  }
+  if (k2 <= 0) {
+    stop(paste("'k2' argument must be positive:", k2))
   }
 
   sampler.jump <- as.list(sampler.jump[required.samplers])

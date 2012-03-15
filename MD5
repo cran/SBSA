@@ -1,8 +1,8 @@
-ba3431920a0ff532033ccf35b35040c0 *DESCRIPTION
+c1289d8bc1f9b597b7df7e1d4454b2da *DESCRIPTION
 6cdeba6687860119fe365a201edee522 *NAMESPACE
-eba8abc5f64fc7f700163e3aaea165ad *R/fitSBSA.R
-54b5067549d7f6d534175a5367e3f7b2 *inst/doc/SBSA-introduction.Rnw
-df36c99eb12fcf4acca3cb55bb6e03b8 *inst/doc/SBSA-introduction.pdf
+44a11198a5611d7e7eeca193f4cb2611 *R/fitSBSA.R
+7f06aa9e084b6b3a19c6037920e6b853 *inst/doc/SBSA-introduction.Rnw
+f7fbf1e4839fc53b766dba5f105f7572 *inst/doc/SBSA-introduction.pdf
 e002fc3c1594ca2d5be37486e9ec154c *man/SBSA-package.Rd
 2c88278efd5a84d0b5d1f17b59224eee *man/fitSBSA.Rd
 e9cfd813b3d368f015b1dc3472bd76a0 *src/Makevars
