@@ -61,7 +61,7 @@ double LogPri::operator ()(const Theta& theta) const {
 
   // beta contribution
   double beta_df = 10;
-  double beta_sc = log(5);
+  double beta_sc = log(5.0);
   double log_pri = -(beta_df + p + 1) / 2 * 
     log(1+(1/beta_df) * accu(square(beta_fk)) / beta_sc);
 

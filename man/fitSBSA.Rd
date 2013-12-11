@@ -94,7 +94,7 @@ w.sdz <- apply(w, 2, function(x) {(x-mean(x)) / sqrt(var(x))} )
 
 ### prior information: ICC very likely above .6, mode at .8
 ### via Beta(5,21) distribution
-fit <- fitSBSA(y, x.sdz, w.sdz, a=5, b=21, nrep=20000,
+fit <- fitSBSA(y, x.sdz, w.sdz, a=5, b=21, nrep=10000,
                sampler.jump=c(alpha=.02, beta.z=.03,
                               sigma.sq=.05, tau.sq=.004,
                               beta.u.gamma.x=.4, gamma.z=.5))
@@ -104,6 +104,6 @@ print(fit$acc)
 plot(fit$alpha[,2], pch=20)
 
 ### inference on target parameter in original scale
-trgt <- fit$alpha[10001:20000,2]/sqrt(var(x))
+trgt <- fit$alpha[1001:10000,2]/sqrt(var(x))
 print(c(mean(trgt), sqrt(var(trgt))))
 }
