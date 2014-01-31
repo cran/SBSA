@@ -8,11 +8,11 @@
 
 \usepackage{subfig}
 \usepackage{bm}
-\usepackage[outerbars]{changebar}
+%% \usepackage[outerbars]{changebar}
 
 \newcommand{\vect}[1]{\bm{#1}}
-\newcommand{\TODO}[1]{\textbf{---TODO: #1---}}
-\newcommand{\DONE}[2]{\marginpar{\small #1}\cbstart {#2}\cbend}
+%% \newcommand{\TODO}[1]{\textbf{---TODO: #1---}}
+%% \newcommand{\DONE}[2]{\marginpar{\small #1}\cbstart {#2}\cbend}
 
 \renewcommand{\topfraction}{0.9}	% max fraction of floats at top
     \renewcommand{\bottomfraction}{0.8}	% max fraction of floats at bottom

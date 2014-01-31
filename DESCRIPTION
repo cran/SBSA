@@ -1,8 +1,8 @@
 Package: SBSA
 Type: Package
 Title: Simplified Bayesian Sensitivity Analysis
-Version: 0.2.2
-Date: 7 January 2014
+Version: 0.2.3
+Date: 31 January 2014
 Author: Davor Cubranic and Paul Gustafson
 Maintainer: Davor Cubranic <cubranic@stat.ubc.ca>
 Description: Simplified Bayesian Sensitivity Analysis
@@ -14,7 +14,7 @@ Imports: Rcpp (>= 0.8.6)
 Suggests: MASS, xtable
 LinkingTo: Rcpp (>= 0.8.6), RcppArmadillo (>= 0.2.6)
 SystemRequirements: GNU make
-Packaged: 2014-01-07 20:10:27 UTC; davor
+Packaged: 2014-01-31 19:12:26 UTC; davor
 NeedsCompilation: yes
 Repository: CRAN
-Date/Publication: 2014-01-07 22:17:28
+Date/Publication: 2014-01-31 21:47:18

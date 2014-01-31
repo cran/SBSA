@@ -1,10 +1,10 @@
-b385c63aa2479ffd3eb67a7a22b5b7c5 *DESCRIPTION
-6cdeba6687860119fe365a201edee522 *NAMESPACE
+92f6abe9d42f91b7dadd926e5fd53f2c *DESCRIPTION
+bd7fccd72904e282a6c856e143cd9d4d *NAMESPACE
 44a11198a5611d7e7eeca193f4cb2611 *R/fitSBSA.R
 a6dd3cedc79e55f8230d9fde3e431702 *build/vignette.rds
 8c01dcbf74a2d2f9177d260c82f9e105 *inst/doc/SBSA-introduction.R
-7f06aa9e084b6b3a19c6037920e6b853 *inst/doc/SBSA-introduction.Rnw
-9331a6f3d3f64913e3d2951f6500df41 *inst/doc/SBSA-introduction.pdf
+baba64342847286a8dfb606db9d8d0ce *inst/doc/SBSA-introduction.Rnw
+22c7174cfdcdcef4e41d89b5bb1a0ad3 *inst/doc/SBSA-introduction.pdf
 e002fc3c1594ca2d5be37486e9ec154c *man/SBSA-package.Rd
 4e68405ba582b53c282fa3a250d77d57 *man/fitSBSA.Rd
 e9cfd813b3d368f015b1dc3472bd76a0 *src/Makevars
@@ -28,4 +28,4 @@ c5e4a17b031a0850682f5c46746bfb86 *src/log_binary_functor.h
 c4f0fa4e053f074cd9012b4e51aa7d1d *src/mcmc_binary_sampler.h
 bf9ce86d7edc62cceb99dde1e3847276 *src/mcmc_sampler.cpp
 faf7a04d9925ba7e08b6fd8af5daf002 *src/mcmc_sampler.h
-7f06aa9e084b6b3a19c6037920e6b853 *vignettes/SBSA-introduction.Rnw
+baba64342847286a8dfb606db9d8d0ce *vignettes/SBSA-introduction.Rnw
